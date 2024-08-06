@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./Register.module.css";
+import { Link } from "react-router-dom";
+import AuthForm from "../../components/AuthForm/AuthForm";
 
-interface IFormValues {
+export interface IFormValues {
   firstName: string;
   lastName: string;
   email: string;
@@ -10,6 +13,8 @@ interface IFormValues {
 }
 
 const Register: React.FC = () => {
+  const navigate = useNavigate();
+
   const [values, setValues] = useState<IFormValues>({
     firstName: "",
     lastName: "",
@@ -57,46 +62,27 @@ const Register: React.FC = () => {
     },
   ];
 
+  useEffect(() => {
+    if (submitted) {
+      navigate("/");
+    }
+  }, [navigate, submitted]);
+
   return (
     <div className={styles.register_page}>
       <div className="wrapper">
         <h1 className={styles.title}>Регистрация</h1>
-        <div className={styles.form_container}>
-          <form className={styles.register_form} onSubmit={handleSubmit}>
-            {submitted && valid && (
-              <div className={styles.success_message}>
-                <h3>
-                  Добро пожаловать {values.firstName} {values.lastName}{" "}
-                </h3>
-                <div> Ваша регистрация прошла успешно! </div>
-              </div>
-            )}
-
-            {!valid &&
-              fields.map((field) => (
-                <React.Fragment key={field.name}>
-                  <input
-                    className={styles.form_field}
-                    type={field.type}
-                    placeholder={field.placeholder}
-                    name={field.name}
-                    value={values[field.name as keyof IFormValues]}
-                    onChange={handleInputChange}
-                  />
-                  {submitted && !values[field.name as keyof IFormValues] && (
-                    <span id={`${field.name}-error`}>
-                      Пожалуйста напишите {field.placeholder.toLowerCase()}
-                    </span>
-                  )}
-                </React.Fragment>
-              ))}
-
-            {!valid && (
-              <button className={styles.form_field} type="submit">
-                Зарегистрироваться
-              </button>
-            )}
-          </form>
+        <AuthForm
+          isSubmitted={submitted}
+          isValid={valid}
+          values={values}
+          fields={fields}
+          handleInputChange={(event) => handleInputChange(event)}
+          handleSubmit={handleSubmit}
+        />
+        <div className={styles.login}>
+          Уже зарегистрированы? &nbsp;
+          <Link to="login">Войти</Link>
         </div>
       </div>
     </div>

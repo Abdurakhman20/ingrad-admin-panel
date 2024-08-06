@@ -9,65 +9,7 @@
   margin-bottom: 35px;
 }
 
-.form_container {
-  max-width: 480px;
-  background-color: white;
-  margin: auto;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-  padding: 10px;
-}
-
-.register_form {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  padding: 10px;
-}
-
-.success_message {
-  font-family: "Inter", sans-serif;
-  background-color: var(--accent-color);
-  padding: 15px;
-  color: white;
+.login {
   text-align: center;
-}
-
-.form_field {
-  margin: 10px 0 10px 0;
-  padding: 15px;
-  font-size: 1.6rem;
-  border: 0;
-  font-family: "Inter", sans-serif;
-}
-
-span {
-  font-family: "Inter", sans-serif;
-  font-size: 1.4rem;
-  color: red;
-  margin-bottom: 15px;
-}
-
-input {
-  background: #f2f2f2;
-}
-
-.error {
-  border-style: solid;
-  border: 2px solid #ffa4a4;
-}
-
-button {
-  color: #000;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  background-color: #f2f2f2;
-}
-
-button:hover {
-  background: var(--accent-color);
-  color: #fff;
-}
-
-button:disabled {
-  cursor: default;
+  padding-top: 10px;
 }
