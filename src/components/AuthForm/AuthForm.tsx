@@ -49,7 +49,7 @@ const AuthForm: React.FC<IAuthForm> = ({
 
         {!isValid && (
           <button className={styles.form_field} type="submit">
-            Зарегистрироваться
+            Ввод
           </button>
         )}
       </form>

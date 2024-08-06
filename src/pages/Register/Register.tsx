@@ -35,9 +35,11 @@ const Register: React.FC = () => {
 
   const [submitted, setSubmitted] = useState(false);
   const [valid, setValid] = useState(false);
+  const [isPasswordValid, setIsPasswordValid] = useState(false);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     if (
       values.firstName &&
       values.lastName &&
@@ -47,6 +49,11 @@ const Register: React.FC = () => {
     ) {
       setValid(true);
     }
+
+    if (values.password !== values.passwordAgain) {
+      setIsPasswordValid(false);
+    }
+
     setSubmitted(true);
   };
 
@@ -63,10 +70,10 @@ const Register: React.FC = () => {
   ];
 
   useEffect(() => {
-    if (submitted) {
+    if (submitted && valid && isPasswordValid) {
       navigate("/");
     }
-  }, [navigate, submitted]);
+  }, [isPasswordValid, navigate, submitted, valid]);
 
   return (
     <div className={styles.register_page}>
@@ -82,7 +89,7 @@ const Register: React.FC = () => {
         />
         <div className={styles.login}>
           Уже зарегистрированы? &nbsp;
-          <Link to="login">Войти</Link>
+          <Link to="/login">Войти</Link>
         </div>
       </div>
     </div>
