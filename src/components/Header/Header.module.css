@@ -1,0 +1,46 @@
+.header {
+  border-bottom: 1px solid #dfdfdf;
+}
+
+.logo {
+  font-size: 2.2rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.logo_link {
+  color: #000;
+}
+
+.header_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav_list {
+  display: flex;
+  gap: 30px;
+}
+
+.link {
+  color: #000;
+  display: inline-block;
+  font-size: 1.8rem;
+  font-weight: 500;
+  transition: color 0.2s ease-in-out;
+}
+
+.link:hover {
+  color: #d0770b;
+}
+
+.auth {
+  display: flex;
+  gap: 30px;
+}
