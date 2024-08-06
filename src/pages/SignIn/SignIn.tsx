@@ -1,7 +1,7 @@
 import React from "react";
 
 const SignIn: React.FC = () => {
-  return <>Sign In</>;
+  return <div className="wrapper">Sign In</div>;
 };
 
 export default SignIn;

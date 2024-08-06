@@ -1,7 +1,7 @@
 import React from "react";
 
 const LicenseKeys: React.FC = () => {
-  return <>License Keys</>;
+  return <div className="wrapper">License Keys</div>;
 };
 
 export default LicenseKeys;
