@@ -26,11 +26,11 @@ const Header = () => {
             </ul>
           </nav>
           <div className={styles.auth}>
-            <Link className={styles.link} to="/sign-up">
-              Sign Up
+            <Link className={styles.link} to="/register">
+              Register
             </Link>
-            <Link className={styles.link} to="/sign-in">
-              Sign In
+            <Link className={styles.link} to="/login">
+              Login
             </Link>
           </div>
         </div>
