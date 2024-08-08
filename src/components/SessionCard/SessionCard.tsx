@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./SessionCard.module.css";
 
 export interface Session {
@@ -17,39 +17,32 @@ interface SessionCardProps {
 }
 
 const SessionCard: React.FC<SessionCardProps> = ({ session }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleCard = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
-    <div className={styles.card}>
-      <h2 className={styles.title}>ID: {session.id}</h2>
-      <hr />
-      <p>
-        <strong>Дата активации:</strong> &nbsp;
-        {new Date(session.startingDateTime).toLocaleString()}
-      </p>
-      <hr />
-      <p>
-        <strong>IP Адрес:</strong> &nbsp; {session.ipAddress}
-      </p>
-      <hr />
-      <p>
-        <strong>Имя пользователя Windows:</strong> &nbsp;{" "}
-        {session.windowsUserName}
-      </p>
-      <hr />
-      <p>
-        <strong>Имя пользователя Revit:</strong> &nbsp; {session.revitUserName}
-      </p>
-      <hr />
-      <p>
-        <strong>Версия Revit:</strong> &nbsp; {session.revitVersion}
-      </p>
-      <hr />
-      <p>
-        <strong>Ключ лицензии:</strong> &nbsp; {session.licenseKey}
-      </p>
-      <hr />
-      <p>
-        <strong>Токен доступа:</strong> &nbsp; {session.accessToken}
-      </p>
+    <div className={styles.sessionCard}>
+      <div className={styles.header} onClick={toggleCard}>
+        <div>ID Сессии: {session.id}</div>
+        <button className={styles.toggleButton}>{isOpen ? "↑" : "↓"}</button>
+      </div>
+      {isOpen && (
+        <div className={styles.details}>
+          <div>
+            Старт: {new Date(session.startingDateTime).toLocaleString()}
+          </div>
+          <div>IP адрес: {session.ipAddress}</div>
+          <div>Пользователь Windows: {session.windowsUserName}</div>
+          <div>Пользователь Revit: {session.revitUserName}</div>
+          <div>Версия Revit: {session.revitVersion}</div>
+          <div>Ключ лицензии: {session.licenseKey}</div>
+          <div>Токен доступа: {session.accessToken}</div>
+          <button className={styles.closeButton}>Закрыть сессию</button>
+        </div>
+      )}
     </div>
   );
 };

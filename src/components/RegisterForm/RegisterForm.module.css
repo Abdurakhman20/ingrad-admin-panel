@@ -18,24 +18,45 @@
   font-size: 1.6rem;
   border: 0;
   font-family: "Inter", sans-serif;
+  border-radius: 10px;
 }
 
-input {
+.input {
   background: #f2f2f2;
 }
 
-button {
+.button {
   color: #000;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   background-color: #f2f2f2;
 }
 
-button:hover {
-  background: var(--accent-color);
+.button:hover {
+  background: var(--second-color);
   color: #fff;
 }
 
-button:disabled {
+.button:disabled {
   cursor: default;
+}
+
+.passwordContainer {
+  position: relative;
+}
+.passwordInput {
+  width: 100%;
+}
+
+.togglePassword {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  margin: 0;
 }
