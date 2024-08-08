@@ -44,4 +44,12 @@
   cursor: pointer;
   border-radius: 3px;
   margin-top: 10px;
+
+  transition: all 0.3s ease-in-out;
+}
+
+.closeButton:hover {
+  background-color: var(--second-color);
+  border-color: var(--second-color);
+  color: #fff;
 }
