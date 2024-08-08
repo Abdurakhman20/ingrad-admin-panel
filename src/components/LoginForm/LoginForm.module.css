@@ -40,3 +40,24 @@
 .button:disabled {
   cursor: default;
 }
+
+.passwordContainer {
+  position: relative;
+}
+.passwordInput {
+  width: 100%;
+}
+
+.togglePassword {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  outline: none;
+  padding: 0;
+  margin: 0;
+}
