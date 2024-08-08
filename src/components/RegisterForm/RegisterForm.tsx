@@ -25,7 +25,7 @@ const RegisterForm: React.FC<IAuthFormProps> = () => {
     <div className={styles.form_container}>
       <form className={styles.register_form} onSubmit={handleSubmit(onSubmit)}>
         <input
-          className={styles.form_field}
+          className={`${styles.form_field} ${styles.input}`}
           type={"text"}
           placeholder={"Имя"}
           {...register("firstName", { required: "Пожалуйста введите имя!" })}
@@ -34,7 +34,7 @@ const RegisterForm: React.FC<IAuthFormProps> = () => {
           <ErrorMessage message={errors.firstName?.message} />
         )}
         <input
-          className={styles.form_field}
+          className={`${styles.form_field} ${styles.input}`}
           type={"text"}
           placeholder={"Фамилия"}
           {...register("lastName", {
@@ -45,7 +45,7 @@ const RegisterForm: React.FC<IAuthFormProps> = () => {
           <ErrorMessage message={errors.lastName?.message} />
         )}
         <input
-          className={styles.form_field}
+          className={`${styles.form_field} ${styles.input}`}
           type={"email"}
           placeholder={"Email"}
           {...register("email", {
@@ -60,7 +60,7 @@ const RegisterForm: React.FC<IAuthFormProps> = () => {
           <ErrorMessage message={errors.email?.message} />
         )}
         <input
-          className={styles.form_field}
+          className={`${styles.form_field} ${styles.input}`}
           type={"password"}
           placeholder={"Пароль"}
           {...register("password", {
@@ -75,7 +75,7 @@ const RegisterForm: React.FC<IAuthFormProps> = () => {
           <ErrorMessage message={errors.password?.message} />
         )}
         <input
-          className={styles.form_field}
+          className={`${styles.form_field} ${styles.input}`}
           type={"password"}
           placeholder={"Повторите пароль"}
           {...register("passwordAgain", {
@@ -93,7 +93,10 @@ const RegisterForm: React.FC<IAuthFormProps> = () => {
         )}
 
         {isValid && (
-          <button className={styles.form_field} type="submit">
+          <button
+            className={`${styles.form_field} ${styles.button}`}
+            type="submit"
+          >
             Регистрация
           </button>
         )}

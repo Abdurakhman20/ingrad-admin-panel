@@ -5,7 +5,7 @@ import SessionCard from "../../components/SessionCard/SessionCard";
 const sessions_data = [
   {
     id: 78,
-    startingDateTime: "2024-08-06T06:56:21.2694613",
+    startingDateTime: "2024-08-06T08:56:21.2694613",
     ipAddress: "::ffff:172.27.0.1",
     windowsUserName: "ING0070_158",
     revitUserName: "112",
@@ -62,7 +62,7 @@ const Sessions: React.FC = () => {
         <h1 className={styles.title}>Активные Сессии</h1>
         <div className={styles.sessions_wrapper}>
           {sessions_data.map((session) => (
-            <SessionCard session={session} />
+            <SessionCard session={session} key={session.id} />
           ))}
         </div>
       </div>

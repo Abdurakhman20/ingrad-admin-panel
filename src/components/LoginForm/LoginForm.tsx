@@ -24,7 +24,7 @@ const LoginForm: React.FC<ILoginFormProps> = () => {
     <div className={styles.form_container}>
       <form className={styles.register_form} onSubmit={handleSubmit(onSubmit)}>
         <input
-          className={styles.form_field}
+          className={`${styles.form_field} ${styles.input}`}
           type={"email"}
           placeholder={"Email"}
           {...register("email", {
@@ -40,7 +40,7 @@ const LoginForm: React.FC<ILoginFormProps> = () => {
         )}
 
         <input
-          className={styles.form_field}
+          className={`${styles.form_field} ${styles.input}`}
           type={"password"}
           placeholder={"Пароль"}
           {...register("password", {
@@ -56,7 +56,10 @@ const LoginForm: React.FC<ILoginFormProps> = () => {
         )}
 
         {isValid && (
-          <button className={styles.form_field} type="submit">
+          <button
+            className={`${styles.form_field} ${styles.button}`}
+            type="submit"
+          >
             Вход
           </button>
         )}

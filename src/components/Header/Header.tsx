@@ -27,10 +27,10 @@ const Header = () => {
           </nav>
           <div className={styles.auth}>
             <Link className={styles.link} to="/register">
-              Register
+              Регистрация
             </Link>
             <Link className={styles.link} to="/login">
-              Login
+              Вход
             </Link>
           </div>
         </div>

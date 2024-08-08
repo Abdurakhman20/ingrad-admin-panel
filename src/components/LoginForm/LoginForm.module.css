@@ -20,22 +20,22 @@
   font-family: "Inter", sans-serif;
 }
 
-input {
+.input {
   background: #f2f2f2;
 }
 
-button {
+.button {
   color: #000;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   background-color: #f2f2f2;
 }
 
-button:hover {
-  background: var(--accent-color);
+.button:hover {
+  background: var(--second-color);
   color: #fff;
 }
 
-button:disabled {
+.button:disabled {
   cursor: default;
 }
