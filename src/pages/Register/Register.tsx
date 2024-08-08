@@ -1,92 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import styles from "./Register.module.css";
 import { Link } from "react-router-dom";
-import AuthForm from "../../components/AuthForm/AuthForm";
+import AuthForm from "../../components/RegisterForm/RegisterForm";
 
-export interface IFormValues {
+export interface IRegisterFormValues {
   firstName: string;
   lastName: string;
   email: string;
-  password: string;
-  passwordAgain: string;
+  password: string | number;
+  passwordAgain: string | number;
 }
 
 const Register: React.FC = () => {
-  const navigate = useNavigate();
-
-  const [values, setValues] = useState<IFormValues>({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    passwordAgain: "",
-  });
-
-  const handleInputChange = (event: React.FormEvent<HTMLInputElement>) => {
-    event.preventDefault();
-
-    const { name, value } = event.currentTarget;
-    setValues((values) => ({
-      ...values,
-      [name]: value,
-    }));
-  };
-
-  const [submitted, setSubmitted] = useState(false);
-  const [valid, setValid] = useState(false);
-  const [isPasswordValid, setIsPasswordValid] = useState(false);
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    if (
-      values.firstName &&
-      values.lastName &&
-      values.email &&
-      values.password &&
-      values.passwordAgain
-    ) {
-      setValid(true);
-    }
-
-    if (values.password !== values.passwordAgain) {
-      setIsPasswordValid(false);
-    }
-
-    setSubmitted(true);
-  };
-
-  const fields = [
-    { name: "firstName", type: "text", placeholder: "Имя" },
-    { name: "lastName", type: "text", placeholder: "Фамилия" },
-    { name: "email", type: "email", placeholder: "Email" },
-    { name: "password", type: "password", placeholder: "Пароль" },
-    {
-      name: "passwordAgain",
-      type: "password",
-      placeholder: "Повторите пароль",
-    },
-  ];
-
-  useEffect(() => {
-    if (submitted && valid && isPasswordValid) {
-      navigate("/");
-    }
-  }, [isPasswordValid, navigate, submitted, valid]);
-
   return (
     <div className={styles.register_page}>
       <div className="wrapper">
         <h1 className={styles.title}>Регистрация</h1>
-        <AuthForm
-          isSubmitted={submitted}
-          isValid={valid}
-          values={values}
-          fields={fields}
-          handleInputChange={(event) => handleInputChange(event)}
-          handleSubmit={handleSubmit}
-        />
+        <AuthForm />
         <div className={styles.login}>
           Уже зарегистрированы? &nbsp;
           <Link to="/login">Войти</Link>

@@ -12,7 +12,6 @@
   justify-content: space-evenly;
   padding: 10px;
 }
-
 .form_field {
   margin: 10px 0 10px 0;
   padding: 15px;
@@ -21,20 +20,8 @@
   font-family: "Inter", sans-serif;
 }
 
-span {
-  font-family: "Inter", sans-serif;
-  font-size: 1.4rem;
-  color: red;
-  margin-bottom: 15px;
-}
-
 input {
   background: #f2f2f2;
-}
-
-.error {
-  border-style: solid;
-  border: 2px solid #ffa4a4;
 }
 
 button {
