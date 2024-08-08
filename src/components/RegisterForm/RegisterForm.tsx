@@ -2,6 +2,7 @@ import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { IRegisterFormValues } from "../../pages/Register/Register";
 import styles from "./RegisterForm.module.css";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 interface IAuthFormProps {}
 
@@ -10,10 +11,12 @@ const RegisterForm: React.FC<IAuthFormProps> = () => {
     register,
     handleSubmit,
     reset,
-    formState: { isValid },
-  } = useForm<IRegisterFormValues>({ mode: "onChange" });
+    getValues,
+    formState: { isValid, errors },
+  } = useForm<IRegisterFormValues>({ mode: "onBlur" });
 
   const onSubmit: SubmitHandler<IRegisterFormValues> = (data) => {
+    // Дальше данные можно закинуть в глобальное состояние
     console.log(data);
     reset();
   };
@@ -25,36 +28,75 @@ const RegisterForm: React.FC<IAuthFormProps> = () => {
           className={styles.form_field}
           type={"text"}
           placeholder={"Имя"}
-          {...(register("firstName"), { required: true })}
+          {...register("firstName", { required: "Пожалуйста введите имя!" })}
         />
+        {errors.firstName?.message && (
+          <ErrorMessage message={errors.firstName?.message} />
+        )}
         <input
           className={styles.form_field}
           type={"text"}
           placeholder={"Фамилия"}
-          {...(register("lastName"), { required: true })}
+          {...register("lastName", {
+            required: "Пожалуйста введите фамилию!",
+          })}
         />
+        {errors.lastName?.message && (
+          <ErrorMessage message={errors.lastName?.message} />
+        )}
         <input
           className={styles.form_field}
           type={"email"}
           placeholder={"Email"}
-          {...(register("email"), { required: true })}
+          {...register("email", {
+            required: "Email обязателен",
+            pattern: {
+              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+              message: "Неверный формат Email",
+            },
+          })}
         />
+        {errors.email?.message && (
+          <ErrorMessage message={errors.email?.message} />
+        )}
         <input
           className={styles.form_field}
           type={"password"}
           placeholder={"Пароль"}
-          {...(register("password"), { required: true })}
+          {...register("password", {
+            required: "Пароль обязателен",
+            minLength: {
+              value: 4,
+              message: "Пароль должен содержать минимум 4 символов",
+            },
+          })}
         />
+        {errors.password?.message && (
+          <ErrorMessage message={errors.password?.message} />
+        )}
         <input
           className={styles.form_field}
           type={"password"}
           placeholder={"Повторите пароль"}
-          {...(register("passwordAgain"), { required: true })}
+          {...register("passwordAgain", {
+            required: "Повторение пароля обязательно",
+            minLength: {
+              value: 4,
+              message: "Пароль должен содержать минимум 4 символов",
+            },
+            validate: (value) =>
+              value === getValues("password") || "Пароли не совпадают!",
+          })}
         />
+        {errors.passwordAgain?.message && (
+          <ErrorMessage message={errors.passwordAgain?.message} />
+        )}
 
-        <button className={styles.form_field} type="submit" disabled={!isValid}>
-          Ввод
-        </button>
+        {isValid && (
+          <button className={styles.form_field} type="submit">
+            Ввод
+          </button>
+        )}
       </form>
     </div>
   );
