@@ -1,22 +1,12 @@
 import React, { useState } from "react";
 import styles from "./SessionCard.module.css";
+import { ISession } from "../../models/ISession";
 
-export interface Session {
-  id: number;
-  startingDateTime: string;
-  ipAddress: string;
-  windowsUserName: string;
-  revitUserName: string;
-  revitVersion: string;
-  licenseKey: string;
-  accessToken: string;
+interface ISessionCardProps {
+  session: ISession;
 }
 
-interface SessionCardProps {
-  session: Session;
-}
-
-const SessionCard: React.FC<SessionCardProps> = ({ session }) => {
+const SessionCard: React.FC<ISessionCardProps> = ({ session }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleCard = () => {
