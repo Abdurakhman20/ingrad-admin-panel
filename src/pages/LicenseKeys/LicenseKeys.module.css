@@ -1,0 +1,30 @@
+.title {
+  text-align: center;
+  margin: 0;
+  padding-top: 45px;
+  letter-spacing: 2px;
+  font-size: 2.6rem;
+  font-weight: 600;
+}
+.licenseKeys {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 20px;
+}
+.addButton {
+  color: #000;
+  border-color: var(--border-color);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  background-color: transparent;
+  padding: 15px;
+  font-size: 1.6rem;
+  font-family: "Inter", sans-serif;
+  border-radius: 10px;
+}
+.addButton:hover {
+  background: var(--accent-color);
+  color: #fff;
+}
