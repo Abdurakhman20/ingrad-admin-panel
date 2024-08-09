@@ -1,0 +1,45 @@
+.licenseKeys_wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.title {
+  text-align: center;
+  margin: 0;
+  padding-top: 45px;
+  letter-spacing: 2px;
+}
+
+.license {
+  max-width: 470px;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+}
+
+.license_content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.license_delete_btn {
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 3px;
+  margin-top: 10px;
+
+  transition: all 0.3s ease-in-out;
+}
+
+.license_delete_btn:hover {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: #fff;
+}
