@@ -1,13 +1,13 @@
 .form_container {
   max-width: 480px;
   background-color: white;
-  margin: auto;
+  margin-top: 20px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   padding: 10px;
   border-radius: 10px;
 }
 
-.register_form {
+.license_form {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -40,24 +40,4 @@
 
 .button:disabled {
   cursor: default;
-}
-
-.passwordContainer {
-  position: relative;
-}
-.passwordInput {
-  width: 100%;
-}
-
-.togglePassword {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  cursor: pointer;
-  outline: none;
-  padding: 0;
-  margin: 0;
 }
