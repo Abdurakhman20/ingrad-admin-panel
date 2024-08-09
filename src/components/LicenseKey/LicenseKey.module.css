@@ -1,0 +1,32 @@
+.license {
+  max-width: 410px;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.license_content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.license_delete_btn {
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 3px;
+  margin-top: 10px;
+
+  transition: all 0.3s ease-in-out;
+}
+
+.license_delete_btn:hover {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: #fff;
+}

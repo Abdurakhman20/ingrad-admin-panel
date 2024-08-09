@@ -1,5 +1,7 @@
 import React from "react";
 import styles from "./LicenseKeys.module.css";
+import LicenseKey from "../../components/LicenseKey/LicenseKey";
+import { ILicenceKey } from "../../models/ILicenseKey";
 
 const LicenseKeys: React.FC = () => {
   const handleLicenseDelete = () => {
@@ -9,20 +11,60 @@ const LicenseKeys: React.FC = () => {
       console.log("accepted!");
     }
   };
+  const licenseItems: ILicenceKey[] = [
+    {
+      id: 1,
+      value: "C85929A2-89D8-4334-8537-7F53A7664D3F",
+      name: "ingp",
+    },
+    {
+      id: 2,
+      value: "C85929A2-89D8-4334-8537-7F53A7664D3F",
+      name: "ingp",
+    },
+    {
+      id: 3,
+      value: "C85929A2-89D8-4334-8537-7F53A7664D3F",
+      name: "ingp",
+    },
+    {
+      id: 4,
+      value: "C85929A2-89D8-4334-8537-7F53A7664D3F",
+      name: "ingp",
+    },
+    {
+      id: 5,
+      value: "C85929A2-89D8-4334-8537-7F53A7664D3F",
+      name: "ingp",
+    },
+    {
+      id: 6,
+      value: "C85929A2-89D8-4334-8537-7F53A7664D3F",
+      name: "ingp",
+    },
+    {
+      id: 7,
+      value: "C85929A2-89D8-4334-8537-7F53A7664D3F",
+      name: "ingp",
+    },
+    {
+      id: 8,
+      value: "C85929A2-89D8-4334-8537-7F53A7664D3F",
+      name: "ingp",
+    },
+    {
+      id: 9,
+      value: "C85929A2-89D8-4334-8537-7F53A7664D3F",
+      name: "ingp",
+    },
+  ];
   return (
     <div className='wrapper'>
       <h2 className={styles.title}>Лицензии</h2>
       <div className={styles.licenseKeys_wrapper}>
-        <div className={styles.license}>
-          <div className={styles.license_content}>
-            <div>ID Лицензии: 1</div>
-            <div>Лицензия: C85929A2-89D8-4334-8537-7F53A7664D3F</div>
-            <div>Название: ingp</div>
-          </div>
-          <button className={styles.license_delete_btn} onClick={handleLicenseDelete}>
-            Удалить
-          </button>
-        </div>
+        {licenseItems.map(item => (
+          <LicenseKey handleDelete={handleLicenseDelete} license={item} key={item.id} />
+        ))}
       </div>
     </div>
   );
