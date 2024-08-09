@@ -21,9 +21,7 @@ const SessionCard: React.FC<ISessionCardProps> = ({ session }) => {
       </div>
       {isOpen && (
         <div className={styles.details}>
-          <div>
-            Старт: {new Date(session.startingDateTime).toLocaleString()}
-          </div>
+          <div>Старт: {new Date(session.startingDateTime).toLocaleString()}</div>
           <div>IP адрес: {session.ipAddress}</div>
           <div>Пользователь Windows: {session.windowsUserName}</div>
           <div>Пользователь Revit: {session.revitUserName}</div>

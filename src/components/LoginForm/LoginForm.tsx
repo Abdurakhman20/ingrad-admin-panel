@@ -15,7 +15,7 @@ const LoginForm: React.FC<ILoginFormProps> = () => {
     formState: { isValid, errors },
   } = useForm<ILoginFormValues>({ mode: "onChange" });
 
-  const onSubmit: SubmitHandler<ILoginFormValues> = (data) => {
+  const onSubmit: SubmitHandler<ILoginFormValues> = data => {
     // Дальше данные можно закинуть в глобальное состояние
     console.log(data);
     reset();
@@ -24,7 +24,7 @@ const LoginForm: React.FC<ILoginFormProps> = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const toggleShowPassword = () => {
-    setShowPassword((prev) => !prev);
+    setShowPassword(prev => !prev);
   };
 
   return (
@@ -42,9 +42,7 @@ const LoginForm: React.FC<ILoginFormProps> = () => {
             },
           })}
         />
-        {errors.email?.message && (
-          <ErrorMessage message={errors.email?.message} />
-        )}
+        {errors.email?.message && <ErrorMessage message={errors.email?.message} />}
 
         <div className={styles.passwordContainer}>
           <input
@@ -59,23 +57,14 @@ const LoginForm: React.FC<ILoginFormProps> = () => {
               },
             })}
           />
-          <button
-            type="button"
-            className={styles.togglePassword}
-            onClick={toggleShowPassword}
-          >
-            {showPassword ? <IoMdEye size={20} /> : <IoMdEyeOff size={20} />}
+          <button type='button' className={styles.togglePassword} onClick={toggleShowPassword}>
+            {showPassword ? <IoMdEyeOff size={20} /> : <IoMdEye size={20} />}
           </button>
         </div>
-        {errors.password?.message && (
-          <ErrorMessage message={errors.password?.message} />
-        )}
+        {errors.password?.message && <ErrorMessage message={errors.password?.message} />}
 
         {isValid && (
-          <button
-            className={`${styles.form_field} ${styles.button}`}
-            type="submit"
-          >
+          <button className={`${styles.form_field} ${styles.button}`} type='submit'>
             Вход
           </button>
         )}

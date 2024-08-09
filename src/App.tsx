@@ -11,11 +11,11 @@ function App() {
     <div>
       <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/sessions" element={<Sessions />} />
-        <Route path="/license-keys" element={<LicenseKeys />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
+        <Route path='/' element={<Home />} />
+        <Route path='/sessions' element={<Sessions />} />
+        <Route path='/license-keys' element={<LicenseKeys />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/login' element={<Login />} />
       </Routes>
     </div>
   );

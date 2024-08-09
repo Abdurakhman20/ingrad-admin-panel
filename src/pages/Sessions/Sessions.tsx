@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Sessions.module.css";
 import SessionCard from "../../components/SessionCard/SessionCard";
+import { ISession } from "../../models/ISession";
+import { getSessions } from "../../api/sessions";
 
 const sessions_data = [
   {
@@ -56,12 +58,29 @@ const sessions_data = [
 ];
 
 const Sessions: React.FC = () => {
+  const [sessions, setSessions] = useState<ISession[]>();
+
+  useEffect(() => {
+    const getAllSessions = async () => {
+      try {
+        const response = await getSessions();
+        setSessions(response?.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    getAllSessions();
+  }, []);
+
+  console.log(sessions);
+
   return (
     <div className={styles.sessions}>
-      <div className="wrapper">
+      <div className='wrapper'>
         <h1 className={styles.title}>Активные Сессии</h1>
         <div className={styles.sessions_wrapper}>
-          {sessions_data.map((session) => (
+          {sessions_data.map(session => (
             <SessionCard session={session} key={session.id} />
           ))}
         </div>

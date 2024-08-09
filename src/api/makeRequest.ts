@@ -1,15 +1,16 @@
 import axios, { AxiosRequestConfig } from "axios";
 const API_ENDPOINT = "https://bim.ingrad.fvds.ru";
-const apiRequirement = process.env.REACT_APP_API_REQUIREMENT;
-const testRequirement = process.env.REACT_APP_TEST_REQUIREMENT;
+const apiRequirement = import.meta.env.VITE_REACT_APP_API_REQUIREMENT;
+const testRequirement = import.meta.env.VITE_REACT_APP_TEST_REQUIREMENT;
 
 export const makeRequest = async (config: AxiosRequestConfig) => {
   config.url = `${API_ENDPOINT}${config.url}`;
   config.headers = {
-    "x-api-requirement": `${apiRequirement}`,
-    "x-test-requirement": `${testRequirement}`,
-    "Content-Type": "Application/json",
+    "api-requirement": `${apiRequirement}`,
+    "test-requirement": `${testRequirement}`,
   };
+
+  console.log(config);
 
   return await axios(config);
 };

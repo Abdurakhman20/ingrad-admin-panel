@@ -16,7 +16,7 @@ const RegisterForm: React.FC<IAuthFormProps> = () => {
     formState: { isValid, errors },
   } = useForm<IRegisterFormValues>({ mode: "onBlur" });
 
-  const onSubmit: SubmitHandler<IRegisterFormValues> = (data) => {
+  const onSubmit: SubmitHandler<IRegisterFormValues> = data => {
     // Дальше данные можно закинуть в глобальное состояние
     console.log(data);
     reset();
@@ -26,11 +26,11 @@ const RegisterForm: React.FC<IAuthFormProps> = () => {
   const [showPasswordAgain, setShowPasswordAgain] = useState(false);
 
   const toggleShowPassword = () => {
-    setShowPassword((prev) => !prev);
+    setShowPassword(prev => !prev);
   };
 
   const toggleShowPasswordAgain = () => {
-    setShowPasswordAgain((prev) => !prev);
+    setShowPasswordAgain(prev => !prev);
   };
 
   return (
@@ -42,9 +42,7 @@ const RegisterForm: React.FC<IAuthFormProps> = () => {
           placeholder={"Имя"}
           {...register("firstName", { required: "Пожалуйста введите имя!" })}
         />
-        {errors.firstName?.message && (
-          <ErrorMessage message={errors.firstName?.message} />
-        )}
+        {errors.firstName?.message && <ErrorMessage message={errors.firstName?.message} />}
         <input
           className={`${styles.form_field} ${styles.input}`}
           type={"text"}
@@ -53,9 +51,7 @@ const RegisterForm: React.FC<IAuthFormProps> = () => {
             required: "Пожалуйста введите фамилию!",
           })}
         />
-        {errors.lastName?.message && (
-          <ErrorMessage message={errors.lastName?.message} />
-        )}
+        {errors.lastName?.message && <ErrorMessage message={errors.lastName?.message} />}
         <input
           className={`${styles.form_field} ${styles.input}`}
           type={"email"}
@@ -68,9 +64,7 @@ const RegisterForm: React.FC<IAuthFormProps> = () => {
             },
           })}
         />
-        {errors.email?.message && (
-          <ErrorMessage message={errors.email?.message} />
-        )}
+        {errors.email?.message && <ErrorMessage message={errors.email?.message} />}
         <div className={styles.passwordContainer}>
           <input
             className={`${styles.form_field} ${styles.input} ${styles.passwordInput}`}
@@ -84,18 +78,12 @@ const RegisterForm: React.FC<IAuthFormProps> = () => {
               },
             })}
           />
-          <button
-            type="button"
-            className={styles.togglePassword}
-            onClick={toggleShowPassword}
-          >
-            {showPassword ? <IoMdEye size={20} /> : <IoMdEyeOff size={20} />}
+          <button type='button' className={styles.togglePassword} onClick={toggleShowPassword}>
+            {showPassword ? <IoMdEyeOff size={20} /> : <IoMdEye size={20} />}
           </button>
         </div>
 
-        {errors.password?.message && (
-          <ErrorMessage message={errors.password?.message} />
-        )}
+        {errors.password?.message && <ErrorMessage message={errors.password?.message} />}
 
         <div className={styles.passwordContainer}>
           <input
@@ -108,32 +96,18 @@ const RegisterForm: React.FC<IAuthFormProps> = () => {
                 value: 4,
                 message: "Пароль должен содержать минимум 4 символов",
               },
-              validate: (value) =>
-                value === getValues("password") || "Пароли не совпадают!",
+              validate: value => value === getValues("password") || "Пароли не совпадают!",
             })}
           />
-          <button
-            type="button"
-            className={styles.togglePassword}
-            onClick={toggleShowPasswordAgain}
-          >
-            {showPasswordAgain ? (
-              <IoMdEye size={20} />
-            ) : (
-              <IoMdEyeOff size={20} />
-            )}
+          <button type='button' className={styles.togglePassword} onClick={toggleShowPasswordAgain}>
+            {showPasswordAgain ? <IoMdEyeOff size={20} /> : <IoMdEye size={20} />}
           </button>
         </div>
 
-        {errors.passwordAgain?.message && (
-          <ErrorMessage message={errors.passwordAgain?.message} />
-        )}
+        {errors.passwordAgain?.message && <ErrorMessage message={errors.passwordAgain?.message} />}
 
         {isValid && (
-          <button
-            className={`${styles.form_field} ${styles.button}`}
-            type="submit"
-          >
+          <button className={`${styles.form_field} ${styles.button}`} type='submit'>
             Регистрация
           </button>
         )}
