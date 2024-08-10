@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "antd";
 import styles from "./LicenseKey.module.css";
 import { ILicenceKey } from "../../models/ILicenseKey";
 
@@ -15,9 +16,9 @@ const LicenseKey: React.FC<ILicenseKeyProps> = ({ license, handleDelete }) => {
         <div>Лицензия: {license.value}</div>
         <div>Название: {license.name}</div>
       </div>
-      <button className={styles.license_delete_btn} onClick={handleDelete}>
+      <Button className={styles.delete_btn} danger type="default" onClick={handleDelete}>
         Удалить
-      </button>
+      </Button>
     </div>
   );
 };

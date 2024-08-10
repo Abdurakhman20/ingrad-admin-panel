@@ -7,10 +7,9 @@
   font-weight: 600;
 }
 .licenseKeys {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 15px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
   margin-top: 20px;
 }
 .addButton {
@@ -27,4 +26,10 @@
 .addButton:hover {
   background: var(--accent-color);
   color: #fff;
+}
+
+@media screen and (max-width: 1300px) {
+  .licenseKeys {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
