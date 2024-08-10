@@ -77,7 +77,7 @@ const Sessions: React.FC = () => {
 
   return (
     <div className={styles.sessions}>
-      <div className='wrapper'>
+      <div className="wrapper">
         <h1 className={styles.title}>Активные Сессии</h1>
         <div className={styles.sessions_wrapper}>
           {sessions_data.map(session => (
