@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import sessionReducer from "./slices/sessionSlice";
+import licenseReducer from "./slices/licenseSlice";
 
 export const store = configureStore({
   reducer: {
     session: sessionReducer,
+    license: licenseReducer,
   },
 });
 

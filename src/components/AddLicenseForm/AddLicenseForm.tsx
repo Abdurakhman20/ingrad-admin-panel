@@ -2,7 +2,6 @@ import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import styles from "./AddLicenseForm.module.css";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
-import { createLicenseKey } from "../../api/licenseKeys";
 
 interface IAddLicenseValues {
   name: string;
@@ -17,18 +16,8 @@ const AddLicenseForm: React.FC = () => {
     formState: { isValid, errors },
   } = useForm<IAddLicenseValues>({ mode: "onChange" });
 
-  const handleCreateData = async (data: { name: string; value: string }) => {
-    try {
-      const response = await createLicenseKey(data.name, data.value);
-      console.log(response?.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   const onSubmit: SubmitHandler<IAddLicenseValues> = data => {
     console.log(data);
-    handleCreateData(data);
     reset();
   };
 

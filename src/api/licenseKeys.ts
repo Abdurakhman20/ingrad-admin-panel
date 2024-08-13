@@ -1,11 +1,11 @@
 import { AxiosRequestConfig, AxiosResponse } from "axios";
 import { makeRequest } from "./makeRequest";
 
-import { ILicenceKey } from "../models/ILicenseKey";
+import { ILicenseKey } from "../models/ILicenseKey";
 
 const URL = "/api/tests/license-key";
 
-export const getLicenseKeys = (config: AxiosRequestConfig = {}): Promise<AxiosResponse<ILicenceKey[]> | undefined> => {
+export const getLicenseKeys = (config: AxiosRequestConfig = {}): Promise<AxiosResponse<ILicenseKey[]> | undefined> => {
   return makeRequest({ method: "GET", url: `${URL}/all`, ...config });
 };
 
@@ -17,7 +17,7 @@ export const createLicenseKey = (
   name: string,
   value: string,
   config: AxiosRequestConfig = {},
-): Promise<AxiosResponse<ILicenceKey[]> | undefined> => {
+): Promise<AxiosResponse<ILicenseKey> | undefined> => {
   const body = {
     name,
     value,

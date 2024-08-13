@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./LicenseKeys.module.css";
 import LicenseKey from "../../components/LicenseKey/LicenseKey";
-import { ILicenceKey } from "../../models/ILicenseKey";
+import { ILicenseKey } from "../../models/ILicenseKey";
 import AddLicenseForm from "../../components/AddLicenseForm/AddLicenseForm";
 
 const LicenseKeys: React.FC = () => {
@@ -14,7 +14,7 @@ const LicenseKeys: React.FC = () => {
       console.log("accepted!");
     }
   };
-  const licenseItems: ILicenceKey[] = [
+  const licenseItems: ILicenseKey[] = [
     {
       id: 1,
       value: "C85929A2-89D8-4334-8537-7F53A7664D3F",
