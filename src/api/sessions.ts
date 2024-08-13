@@ -11,3 +11,16 @@ export const getSessions = (config: AxiosRequestConfig = {}): Promise<AxiosRespo
     url: `${URL}/all`,
     ...config,
   });
+
+export const deleteSession = (
+  id: number,
+  config: AxiosRequestConfig = {},
+): Promise<AxiosResponse<number> | undefined> =>
+  makeRequest({
+    method: "DELETE",
+    url: `${URL}`,
+    params: {
+      id: id,
+    },
+    ...config,
+  });
