@@ -1,11 +1,12 @@
 import React from "react";
+import { v4 as uuidv4 } from "uuid";
+
 import { useForm, SubmitHandler } from "react-hook-form";
 import styles from "./AddLicenseForm.module.css";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 interface IAddLicenseValues {
   name: string;
-  value: string;
 }
 
 const AddLicenseForm: React.FC = () => {
@@ -17,7 +18,9 @@ const AddLicenseForm: React.FC = () => {
   } = useForm<IAddLicenseValues>({ mode: "onChange" });
 
   const onSubmit: SubmitHandler<IAddLicenseValues> = data => {
-    console.log(data);
+    const uniqueId = uuidv4();
+    const newData = { value: uniqueId, ...data };
+    console.log(newData);
     reset();
   };
 
@@ -31,13 +34,6 @@ const AddLicenseForm: React.FC = () => {
           {...register("name", { required: "Пожалуйста введите название лицензии!" })}
         />
         {errors.name?.message && <ErrorMessage message={errors.name?.message} />}
-        <input
-          className={`${styles.form_field} ${styles.input}`}
-          type={"text"}
-          placeholder={"Ключ лицензии"}
-          {...register("value", { required: "Пожалуйста введите ключ лицензии!" })}
-        />
-        {errors.value?.message && <ErrorMessage message={errors.value?.message} />}
 
         {isValid && (
           <button className={`${styles.form_field} ${styles.button}`} type="submit">

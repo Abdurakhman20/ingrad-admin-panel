@@ -19,8 +19,12 @@ const initialState: ISessionState = {
 };
 
 export const fetchSessions = createAsyncThunk("session/fetchSessions", async (): Promise<ISession[] | undefined> => {
-  const response = await getSessions();
-  return response?.data;
+  try {
+    const response = await getSessions();
+    return response?.data;
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 export const removeSession = createAsyncThunk("session/removeSession", async (id: number, { rejectWithValue }) => {
