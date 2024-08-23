@@ -1,51 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./LicenseKeys.module.css";
 import LicenseKey from "../../components/LicenseKey/LicenseKey";
-import { ILicenseKey } from "../../models/ILicenseKey";
 import AddLicenseForm from "../../components/AddLicenseForm/AddLicenseForm";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { fetchLicenseKeys, LicenseStatus } from "../../store/slices/licenseSlice";
 
 const LicenseKeys: React.FC = () => {
   const [isFormActive, setIsFormActive] = useState(false);
+  const dispatch = useAppDispatch();
+  const licenses = useAppSelector(state => state.license.licenses);
+  const status = useAppSelector(state => state.license.status);
+
+  useEffect(() => {
+    dispatch(fetchLicenseKeys());
+  }, [dispatch]);
 
   const handleLicenseDelete = () => {
-    const confirm: boolean = window.confirm("Вы действительно хотите удалить сессию?");
+    const confirm: boolean = window.confirm("Вы действительно хотите удалить лицензию?");
 
     if (confirm) {
       console.log("accepted!");
     }
   };
-  const licenseItems: ILicenseKey[] = [
-    {
-      id: 1,
-      value: "C85929A2-89D8-4334-8537-7F53A7664D3F",
-      name: "ingp",
-    },
-    {
-      id: 2,
-      value: "C85929A2-89D8-4334-8537-7F53A7664D3F",
-      name: "ingp",
-    },
-    {
-      id: 3,
-      value: "C85929A2-89D8-4334-8537-7F53A7664D3F",
-      name: "ingp",
-    },
-    {
-      id: 4,
-      value: "C85929A2-89D8-4334-8537-7F53A7664D3F",
-      name: "ingp",
-    },
-    {
-      id: 5,
-      value: "C85929A2-89D8-4334-8537-7F53A7664D3F",
-      name: "ingp",
-    },
-    {
-      id: 6,
-      value: "C85929A2-89D8-4334-8537-7F53A7664D3F",
-      name: "ingp",
-    },
-  ];
+
+  console.log(licenses);
 
   return (
     <div className={styles.licenseKeys_wrapper}>
@@ -59,9 +37,12 @@ const LicenseKeys: React.FC = () => {
         </div>
 
         <div className={styles.licenseKeys}>
-          {licenseItems.map(item => (
-            <LicenseKey handleDelete={handleLicenseDelete} license={item} key={item.id} />
-          ))}
+          {status === LicenseStatus.LOADING ? (
+            <p>Загрузка...</p>
+          ) : (
+            licenses.map(item => <LicenseKey handleDelete={handleLicenseDelete} license={item} key={item.id} />)
+          )}
+          {}
         </div>
       </div>
     </div>

@@ -16,7 +16,10 @@ const Sessions: React.FC = () => {
   }, [dispatch]);
 
   const handleDeleteSession = (id: number) => {
-    dispatch(removeSession(id));
+    const confirm: boolean = window.confirm("Вы действительно хотите удалить сессию?");
+    if (confirm) {
+      dispatch(removeSession(id));
+    }
   };
 
   const columns: ColumnsType<ISession> = [
