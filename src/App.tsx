@@ -5,6 +5,7 @@ import Sessions from "./pages/Sessions/Sessions";
 import LicenseKeys from "./pages/LicenseKeys/LicenseKeys";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
+import NotFound from "./pages/NotFound/NotFound";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/license-keys" element={<LicenseKeys />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );

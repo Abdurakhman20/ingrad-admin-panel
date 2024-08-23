@@ -1,15 +1,17 @@
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
-
 import { useForm, SubmitHandler } from "react-hook-form";
 import styles from "./AddLicenseForm.module.css";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import { addLicenseKey } from "../../store/slices/licenseSlice";
+import { useAppDispatch } from "../../store/hooks";
 
 interface IAddLicenseValues {
   name: string;
 }
 
 const AddLicenseForm: React.FC = () => {
+  const dispatch = useAppDispatch();
   const {
     register,
     handleSubmit,
@@ -20,7 +22,7 @@ const AddLicenseForm: React.FC = () => {
   const onSubmit: SubmitHandler<IAddLicenseValues> = data => {
     const uniqueId = uuidv4();
     const newData = { value: uniqueId, ...data };
-    console.log(newData);
+    dispatch(addLicenseKey(newData));
     reset();
   };
 

@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getLicenseKeys, deleteLicenseKey, createLicenseKey } from "../../api/licenseKeys";
 import { ILicenseKey } from "../../models/ILicenseKey";
-import { deleteSession } from "../../api/sessions";
+import { deleteSession, getSessions } from "../../api/sessions";
+import { ISession } from "../../models/ISession";
 
 export enum LicenseStatus {
   LOADING,
@@ -24,16 +25,29 @@ export const fetchLicenseKeys = createAsyncThunk("license/fetchLicenseKeys", asy
   return response?.data;
 });
 
-export const removeLicenseKey = createAsyncThunk("license/removeLicenseKey", async (id: number, { rejectWithValue }) => {
-  try {
-    await deleteLicenseKey(id);
-    // Тут я хз связаны ли id лицензии и сессии, если да, то все правильно
-    await deleteSession(id);
-    return id; // Возвращаем id удаленной лицензии
-  } catch (error) {
-    return rejectWithValue(error);
-  }
-});
+export const removeLicenseKey = createAsyncThunk(
+  "license/removeLicenseKey",
+  async (license: ILicenseKey, { rejectWithValue }) => {
+    try {
+      // Удаляем лицензионный ключ
+      await deleteLicenseKey(license.id);
+      // Получаем список сессий
+      const response = await getSessions();
+
+      // Фильтруем сессии по лицензионному ключу
+      const sessionsToDelete = response?.data.filter((session: ISession) => session.licenseKey === license.value) || [];
+
+      // Удаляем отфильтрованные сессии
+      for (const session of sessionsToDelete) {
+        await deleteSession(session.id); // Thunk для удаления сессии по id
+      }
+
+      return license.id; // Возвращаем id удаленной лицензии
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
 
 export const addLicenseKey = createAsyncThunk(
   "license/addLicenseKey",
