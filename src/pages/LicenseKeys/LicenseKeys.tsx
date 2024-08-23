@@ -21,7 +21,9 @@ const LicenseKeys: React.FC = () => {
   }, [dispatch]);
 
   const handleLicenseDelete = (license: ILicenseKey) => {
-    const confirm: boolean = window.confirm("Вы действительно хотите удалить лицензию?");
+    const confirm: boolean = window.confirm(
+      "Вы действительно хотите удалить лицензию? ВНИМАНИЕ!!! При удалении лицензии, удаляться все сессии с данной лицензией!",
+    );
 
     if (confirm) {
       dispatch(removeLicenseKey(license));
