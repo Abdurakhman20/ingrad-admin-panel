@@ -5,6 +5,7 @@ import AddLicenseForm from "../../components/AddLicenseForm/AddLicenseForm";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { fetchLicenseKeys, removeLicenseKey, LicenseStatus } from "../../store/slices/licenseSlice";
 import { Pagination } from "antd";
+import { ILicenseKey } from "../../models/ILicenseKey";
 
 const LicenseKeys: React.FC = () => {
   const [isFormActive, setIsFormActive] = useState(false);
@@ -19,11 +20,11 @@ const LicenseKeys: React.FC = () => {
     dispatch(fetchLicenseKeys());
   }, [dispatch]);
 
-  const handleLicenseDelete = (id: number) => {
+  const handleLicenseDelete = (license: ILicenseKey) => {
     const confirm: boolean = window.confirm("Вы действительно хотите удалить лицензию?");
 
     if (confirm) {
-      dispatch(removeLicenseKey(id));
+      dispatch(removeLicenseKey(license));
     }
   };
   const handlePageChange = (page: number, pageSize?: number) => {
@@ -49,7 +50,7 @@ const LicenseKeys: React.FC = () => {
             <p>Загрузка...</p>
           ) : (
             paginatedLicenses.map(item => (
-              <LicenseKey handleDelete={() => handleLicenseDelete(item.id)} license={item} key={item.id} />
+              <LicenseKey handleDelete={() => handleLicenseDelete(item)} license={item} key={item.id} />
             ))
           )}
         </div>
