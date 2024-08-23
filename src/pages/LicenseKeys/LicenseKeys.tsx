@@ -4,9 +4,13 @@ import LicenseKey from "../../components/LicenseKey/LicenseKey";
 import AddLicenseForm from "../../components/AddLicenseForm/AddLicenseForm";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { fetchLicenseKeys, removeLicenseKey, LicenseStatus } from "../../store/slices/licenseSlice";
+import { Pagination } from "antd";
 
 const LicenseKeys: React.FC = () => {
   const [isFormActive, setIsFormActive] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(9); // Количество элементов на странице
+
   const dispatch = useAppDispatch();
   const licenses = useAppSelector(state => state.license.licenses);
   const status = useAppSelector(state => state.license.status);
@@ -22,8 +26,12 @@ const LicenseKeys: React.FC = () => {
       dispatch(removeLicenseKey(id));
     }
   };
+  const handlePageChange = (page: number, pageSize?: number) => {
+    setCurrentPage(page);
+    if (pageSize) setPageSize(pageSize);
+  };
 
-  console.log(licenses);
+  const paginatedLicenses = licenses.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
   return (
     <div className={styles.licenseKeys_wrapper}>
@@ -40,9 +48,20 @@ const LicenseKeys: React.FC = () => {
           {status === LicenseStatus.LOADING ? (
             <p>Загрузка...</p>
           ) : (
-            licenses.map(item => <LicenseKey handleDelete={() => handleLicenseDelete(item.id)} license={item} key={item.id} />)
+            paginatedLicenses.map(item => (
+              <LicenseKey handleDelete={() => handleLicenseDelete(item.id)} license={item} key={item.id} />
+            ))
           )}
-          {}
+        </div>
+        <div className={styles.pagination_wrapper}>
+          <Pagination
+            current={currentPage}
+            pageSize={pageSize}
+            total={licenses.length}
+            onChange={handlePageChange}
+            showSizeChanger
+            onShowSizeChange={handlePageChange}
+          />
         </div>
       </div>
     </div>

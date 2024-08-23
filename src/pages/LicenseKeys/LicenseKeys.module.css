@@ -27,6 +27,9 @@
   background: var(--accent-color);
   color: #fff;
 }
+.pagination_wrapper {
+  padding-top: 30px;
+}
 
 @media screen and (max-width: 1300px) {
   .licenseKeys {
