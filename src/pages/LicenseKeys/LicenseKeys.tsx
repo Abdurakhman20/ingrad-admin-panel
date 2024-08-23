@@ -3,7 +3,7 @@ import styles from "./LicenseKeys.module.css";
 import LicenseKey from "../../components/LicenseKey/LicenseKey";
 import AddLicenseForm from "../../components/AddLicenseForm/AddLicenseForm";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { fetchLicenseKeys, LicenseStatus } from "../../store/slices/licenseSlice";
+import { fetchLicenseKeys, removeLicenseKey, LicenseStatus } from "../../store/slices/licenseSlice";
 
 const LicenseKeys: React.FC = () => {
   const [isFormActive, setIsFormActive] = useState(false);
@@ -15,11 +15,11 @@ const LicenseKeys: React.FC = () => {
     dispatch(fetchLicenseKeys());
   }, [dispatch]);
 
-  const handleLicenseDelete = () => {
+  const handleLicenseDelete = (id: number) => {
     const confirm: boolean = window.confirm("Вы действительно хотите удалить лицензию?");
 
     if (confirm) {
-      console.log("accepted!");
+      dispatch(removeLicenseKey(id));
     }
   };
 
@@ -40,7 +40,7 @@ const LicenseKeys: React.FC = () => {
           {status === LicenseStatus.LOADING ? (
             <p>Загрузка...</p>
           ) : (
-            licenses.map(item => <LicenseKey handleDelete={handleLicenseDelete} license={item} key={item.id} />)
+            licenses.map(item => <LicenseKey handleDelete={() => handleLicenseDelete(item.id)} license={item} key={item.id} />)
           )}
           {}
         </div>
