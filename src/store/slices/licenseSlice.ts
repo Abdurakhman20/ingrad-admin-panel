@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getLicenseKeys, deleteLicenseKey, createLicenseKey } from "../../api/licenseKeys";
 import { ILicenseKey } from "../../models/ILicenseKey";
-import { deleteSession } from "../../api/sessions";
 
 export enum LicenseStatus {
   LOADING,
@@ -27,8 +26,7 @@ export const fetchLicenseKeys = createAsyncThunk("license/fetchLicenseKeys", asy
 export const removeLicenseKey = createAsyncThunk("license/removeLicenseKey", async (id: number, { rejectWithValue }) => {
   try {
     await deleteLicenseKey(id);
-    // Тут я хз связаны ли id лицензии и сессии, если да, то все правильно
-    await deleteSession(id);
+
     return id; // Возвращаем id удаленной лицензии
   } catch (error) {
     return rejectWithValue(error);
