@@ -9,8 +9,5 @@ export const makeRequest = async (config: AxiosRequestConfig) => {
     "api-requirement": `${apiRequirement}`,
     "test-requirement": `${testRequirement}`,
   };
-
-  console.log(config);
-
   return await axios(config);
 };
