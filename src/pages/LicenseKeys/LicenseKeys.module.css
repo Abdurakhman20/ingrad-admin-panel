@@ -24,12 +24,19 @@
   background: var(--accent-color);
   color: #fff;
 }
-/* .pagination_wrapper {
-  padding-top: 30px;
+.addLicenseFormContainer {
+  max-width: 480px;
+  width: 100%;
 }
-
-@media screen and (max-width: 1300px) {
-  .licenseKeys {
-    grid-template-columns: repeat(2, 1fr);
-  }
-} */
+.filterContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.controlls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+}
