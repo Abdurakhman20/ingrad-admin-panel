@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
+import softaproLogo from "../../assets/softapro.png";
 
 const Header = () => {
   return (
@@ -7,8 +8,9 @@ const Header = () => {
       <div className="wrapper">
         <div className={styles.header_container}>
           <div className={styles.logo}>
+            <img className={styles.logo_img} src={softaproLogo} />
             <Link className={styles.logo_link} to="/">
-              Инград Проект
+              SOFTAPRO
             </Link>
           </div>
           <nav className={styles.nav}>

@@ -7,9 +7,6 @@
   font-weight: 600;
 }
 .licenseKeys {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
   margin-top: 20px;
 }
 .addButton {
@@ -27,7 +24,7 @@
   background: var(--accent-color);
   color: #fff;
 }
-.pagination_wrapper {
+/* .pagination_wrapper {
   padding-top: 30px;
 }
 
@@ -35,4 +32,4 @@
   .licenseKeys {
     grid-template-columns: repeat(2, 1fr);
   }
-}
+} */

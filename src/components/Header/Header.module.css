@@ -6,9 +6,16 @@
   font-size: 2.2rem;
   font-weight: 600;
   cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
 }
 .logo_link {
   color: #000;
+}
+.logo_img {
+  width: 30px;
 }
 
 .header_container {
